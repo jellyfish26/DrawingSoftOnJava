@@ -8,10 +8,8 @@ public class ChangeColorButton extends JButton {
 	public ChangeColorButton(MousePaintListener paintListener, String name, Color color) {
 		super(name);
 		this.paintListener = paintListener;
-		changeColor = color;
-		this.addActionListener(e -> {
-			this.paintListener.getGraphics().setColor(changeColor);
-		});
+		this.changeColor = color;
+		this.addActionListener(e -> this.paintListener.getGraphics().setColor(changeColor));
 	}
 	
 	void setLocationAndSize(int x, int y) {
