@@ -31,6 +31,7 @@ public class MousePaintListener implements MouseMotionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println(frame.getGraphics());
 		// TODO 自動生成されたメソッド・スタブ
 		
 	}

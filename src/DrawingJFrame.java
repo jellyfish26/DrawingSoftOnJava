@@ -6,19 +6,20 @@ public class DrawingJFrame extends JFrame {
 	
 	public DrawingJFrame() {
 		super("Drawing Software");
-		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
-		this.setResizable(false);
-		this.setVisible(true);
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		setResizable(false);
+		setVisible(true);
 		this.paintListener = new MousePaintListener(this);
-		this.addMousePaintListener(this.paintListener);
+		addMousePaintListener(this.paintListener);
 	}
 	
 	public synchronized void addMousePaintListener(MousePaintListener mpl) {
-		super.addMouseListener(mpl);
-		super.addMouseMotionListener(mpl);
+		addMouseListener(mpl);
+		addMouseMotionListener(mpl);
 	}
+
 	
 	public MousePaintListener getMousePaintListener() {
 		return this.paintListener;
