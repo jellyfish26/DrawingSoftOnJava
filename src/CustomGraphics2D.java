@@ -2,7 +2,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CustomGraphics2D {
-    Graphics2D graphics;
+    private Graphics2D graphics;
+    private int beforeX = -1, beforeY = -1;
+
     CustomGraphics2D(Graphics2D graphics) {
         this.graphics = graphics;
         this.graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -19,6 +21,15 @@ public class CustomGraphics2D {
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
+    }
+
+    public synchronized void drawSmoothLine(int x, int y) {
+        if (beforeX != -1) this.graphics.drawLine(this.beforeX, this.beforeY, x, y);
+        this.beforeX = x; this.beforeY = y;
+    }
+
+    public void resetSmoothLineCoordinate() {
+        this.beforeX = -1; this.beforeY = -1;
     }
 
     public Graphics getGraphics() {

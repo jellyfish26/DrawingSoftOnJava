@@ -4,9 +4,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MousePaintListener implements MouseMotionListener, MouseListener {
-	DrawingJFrame frame;
-	CustomGraphics2D frameGraphics;
-	DrawingShape drawShape;
+	private DrawingJFrame frame;
+	private CustomGraphics2D frameGraphics;
+	private DrawingShape drawShape;
 	
 	public MousePaintListener(DrawingJFrame frame) {
 		this.frame = frame;
@@ -27,7 +27,7 @@ public class MousePaintListener implements MouseMotionListener, MouseListener {
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		this.frameGraphics.getGraphics().fillArc(e.getX(), e.getY(), 10, 10, 0, 360);
+		this.frameGraphics.drawSmoothLine(e.getX(), e.getY());
 	}
 
 	@Override
@@ -58,7 +58,6 @@ public class MousePaintListener implements MouseMotionListener, MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		this.frameGraphics.resetSmoothLineCoordinate();
 	}
-
 }

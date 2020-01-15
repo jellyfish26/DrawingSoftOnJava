@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class DrawingShape {
     private int vertex;
     private String shapeName;
-    ArrayList<Integer> x, y;
+    private ArrayList<Integer> x, y;
 
     DrawingShape(int vertex, String name) {
         this.vertex = vertex;
