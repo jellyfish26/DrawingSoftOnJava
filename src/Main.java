@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 
 public class Main {
 	public static void main(String[] args) {
@@ -11,9 +11,6 @@ public class Main {
 		redButton.setLocationAndSize(100, 400);
 		straightLineButton.setLocationAndSize(180, 400);
 		triangleLineButton.setLocationAndSize(260, 400);
-		window.add(blackButton);
-		window.add(redButton);
-		window.add(straightLineButton);
-		window.add(triangleLineButton);
+		window.add(new Component[]{blackButton, redButton, straightLineButton, triangleLineButton});
 	}
 }

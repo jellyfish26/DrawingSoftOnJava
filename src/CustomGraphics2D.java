@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CustomGraphics2D {
-    private Graphics2D graphics;
+    private Graphics2D graphics; // SunGraphics2D is finally class
     private int beforeX = -1, beforeY = -1;
 
     CustomGraphics2D(Graphics2D graphics) {

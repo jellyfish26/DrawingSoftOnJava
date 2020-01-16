@@ -28,4 +28,10 @@ public class DrawingJFrame extends JFrame {
 	public MousePaintListener getMousePaintListener() {
 		return this.paintListener;
 	}
+
+	public Component[] add(Component[] comp) {
+		Component[] values = new Component[comp.length];
+		for (int i = 0; i < comp.length; i++) values[i] = super.add(comp[i]);
+		return values;
+	}
 }
