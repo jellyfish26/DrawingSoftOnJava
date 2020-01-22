@@ -1,3 +1,9 @@
+package listener;
+
+import drawing.CustomGraphics2D;
+import drawing.DrawingJFrame;
+import drawing.DrawingShape;
+
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

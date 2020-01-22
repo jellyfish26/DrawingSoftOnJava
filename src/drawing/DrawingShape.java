@@ -1,3 +1,5 @@
+package drawing;
+
 import java.util.ArrayList;
 
 public class DrawingShape {
@@ -5,7 +7,7 @@ public class DrawingShape {
     private String shapeName;
     private ArrayList<Integer> x, y;
 
-    DrawingShape(int vertex, String name) {
+    public DrawingShape(int vertex, String name) {
         this.vertex = vertex;
         this.shapeName = name;
         this.x = new ArrayList<>(vertex);
