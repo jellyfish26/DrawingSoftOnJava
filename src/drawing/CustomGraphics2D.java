@@ -47,4 +47,8 @@ public class CustomGraphics2D {
     public BufferedImage getBufferedImage() {
         return bufferedImage;
     }
+
+    public void changeLineThickness(int level) {
+        this.graphics.setStroke(new BasicStroke(level));
+    }
 }

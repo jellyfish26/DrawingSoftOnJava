@@ -2,6 +2,7 @@ package drawing;
 
 import color.CustomColorMenuItem;
 import color.SetColorMenuItem;
+import line.SetThicknessMenuItem;
 import listener.MousePaintListener;
 import listener.SetMousePaintListener;
 
@@ -70,6 +71,12 @@ public class DrawingJFrame extends JFrame {
 		colorRelate.add(new SetColorMenuItem("Green", new Color(0, 255, 0)));
 		colorRelate.add(new CustomColorMenuItem("Custom Color", this));
 		menuBar.add(colorRelate);
+
+		JMenu lineRelate = new JMenu("Line");
+		lineRelate.add(new SetThicknessMenuItem("thin", 1));
+		lineRelate.add(new SetThicknessMenuItem("normal", 3));
+		lineRelate.add(new SetThicknessMenuItem("thick", 5));
+		menuBar.add(lineRelate);
 		setJMenuBar(menuBar);
 	}
 }
