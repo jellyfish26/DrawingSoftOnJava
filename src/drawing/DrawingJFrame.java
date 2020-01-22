@@ -12,6 +12,7 @@ public class DrawingJFrame extends JFrame {
 	private final int FRAME_WIDTH = 500, FRAME_HEIGHT = 500;
 	private MousePaintListener paintListener;
 	private JMenuBar menuBar;
+	private DrawingJPanel drawPanel;
 
 	public DrawingJFrame() {
 		super("Drawing Software");
@@ -19,16 +20,14 @@ public class DrawingJFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		setResizable(false);
+		drawPanel = new DrawingJPanel(FRAME_WIDTH, FRAME_HEIGHT);
+		add(drawPanel);
 		setMenuBar();
 	}
 	
 	public synchronized void addMousePaintListener(MousePaintListener mpl) {
 		addMouseListener(mpl);
 		addMouseMotionListener(mpl);
-	}
-
-	public CustomGraphics2D getCustomGraphics2D() {
-		return new CustomGraphics2D((Graphics2D) this.getGraphics());
 	}
 
 	public MousePaintListener getMousePaintListener() {
@@ -44,11 +43,12 @@ public class DrawingJFrame extends JFrame {
 	@Override
 	public void setVisible(boolean b) {
 		super.setVisible(b);
-		this.paintListener = new MousePaintListener(this);
-		addMousePaintListener(this.paintListener);
+		paintListener = new MousePaintListener(drawPanel);
+		drawPanel.addMousePaintListener(paintListener);
 		for (int menuBarIndex = 0; menuBarIndex < menuBar.getMenuCount(); menuBarIndex++) {
 			setMousePaintListenerToMenu(menuBar.getMenu(menuBarIndex));
 		}
+		drawPanel.addMouseMotionListener(paintListener);
 	}
 
 	private void setMousePaintListenerToMenu(JMenuItem menu) {

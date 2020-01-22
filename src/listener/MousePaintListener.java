@@ -2,6 +2,7 @@ package listener;
 
 import drawing.CustomGraphics2D;
 import drawing.DrawingJFrame;
+import drawing.DrawingJPanel;
 import drawing.DrawingShape;
 
 import java.awt.Graphics;
@@ -10,13 +11,13 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MousePaintListener implements MouseMotionListener, MouseListener {
-	private DrawingJFrame frame;
+	private DrawingJPanel frame;
 	private CustomGraphics2D frameGraphics;
 	private DrawingShape drawShape;
 	
-	public MousePaintListener(DrawingJFrame frame) {
+	public MousePaintListener(DrawingJPanel frame) {
 		this.frame = frame;
-		this.frameGraphics = frame.getCustomGraphics2D();
+		this.frameGraphics = frame.getCustomGraphics();
 	}
 	
 	public Graphics getGraphics() {
