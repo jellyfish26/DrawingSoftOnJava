@@ -19,7 +19,7 @@ public class DrawingJPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        g.drawImage(customGraphics.getBufferedImage(), 0, 0, this);
+        g.drawImage(customGraphics.getCustomImage(), 0, 0, this);
         repaint();
     }
 

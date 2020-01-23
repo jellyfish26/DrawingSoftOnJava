@@ -5,13 +5,13 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class CustomGraphics2D {
-    private BufferedImage bufferedImage;
+    private CustomImage customImage;
     private Graphics2D graphics; // SunGraphics2D is finally class
     private int beforeX = -1, beforeY = -1;
 
     CustomGraphics2D(int width, int height) {
-        this.bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        this.graphics = bufferedImage.createGraphics();
+        this.customImage = new CustomImage(width, height, BufferedImage.TYPE_INT_RGB);
+        this.graphics = customImage.createGraphics();
         this.graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         this.graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         this.graphics.setColor(Color.WHITE);
@@ -44,8 +44,8 @@ public class CustomGraphics2D {
         return this.graphics;
     }
 
-    public BufferedImage getBufferedImage() {
-        return bufferedImage;
+    public CustomImage getCustomImage() {
+        return customImage;
     }
 
     public void changeLineThickness(int level) {

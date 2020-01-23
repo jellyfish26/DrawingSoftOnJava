@@ -2,6 +2,7 @@ package drawing;
 
 import color.CustomColorMenuItem;
 import color.SetColorMenuItem;
+import file.FileOutputChooserMenuItem;
 import line.SetThicknessMenuItem;
 import listener.MousePaintListener;
 import listener.SetMousePaintListener;
@@ -65,18 +66,33 @@ public class DrawingJFrame extends JFrame {
 
 	private void setMenuBar() {
 		menuBar = new JMenuBar();
+		menuBar.add(setFileMenu());
+		menuBar.add(setColorMenu());
+		menuBar.add(setLineMenu());
+		setJMenuBar(menuBar);
+	}
+
+	private JMenu setFileMenu() {
+		JMenu fileRelate = new JMenu("File");
+		fileRelate.add(new FileOutputChooserMenuItem("Save", this,
+				drawPanel.getCustomGraphics().getCustomImage(), "png", "jpg"));
+		return fileRelate;
+	}
+
+	private JMenu setColorMenu() {
 		JMenu colorRelate = new JMenu("Color");
 		colorRelate.add(new SetColorMenuItem("Black", new Color(0, 0, 0)));
 		colorRelate.add(new SetColorMenuItem("Red", new Color(255, 0, 0)));
 		colorRelate.add(new SetColorMenuItem("Green", new Color(0, 255, 0)));
 		colorRelate.add(new CustomColorMenuItem("Custom Color", this));
-		menuBar.add(colorRelate);
+		return colorRelate;
+	}
 
+	private JMenu setLineMenu() {
 		JMenu lineRelate = new JMenu("Line");
 		lineRelate.add(new SetThicknessMenuItem("thin", 1));
 		lineRelate.add(new SetThicknessMenuItem("normal", 3));
 		lineRelate.add(new SetThicknessMenuItem("thick", 5));
-		menuBar.add(lineRelate);
-		setJMenuBar(menuBar);
+		return lineRelate;
 	}
 }
