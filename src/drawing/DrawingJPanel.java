@@ -14,12 +14,12 @@ public class DrawingJPanel extends JPanel {
         super();
         setSize(width, height);
         this.customGraphics = new CustomGraphics2D(width, height);
-        this.setBackground(Color.WHITE);
+        this.customGraphics.getGraphics().setColor(Color.BLACK);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        g.drawImage(customGraphics.getCustomImage(), 0, 0, this);
+        customGraphics.updateBuffer(g, this);
         repaint();
     }
 

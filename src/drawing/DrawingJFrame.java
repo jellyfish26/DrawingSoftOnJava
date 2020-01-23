@@ -75,7 +75,7 @@ public class DrawingJFrame extends JFrame {
 	private JMenu setFileMenu() {
 		JMenu fileRelate = new JMenu("File");
 		fileRelate.add(new FileOutputChooserMenuItem("Save", this,
-				drawPanel.getCustomGraphics().getCustomImage(), "png", "jpg"));
+				drawPanel.getCustomGraphics(), "png", "jpg"));
 		return fileRelate;
 	}
 

@@ -1,22 +1,36 @@
 package drawing;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class CustomGraphics2D {
-    private CustomImage customImage;
+    private BufferedImage bufferedImage;
+    private int imageWidth, imageHeight;
     private Graphics2D graphics; // SunGraphics2D is finally class
     private int beforeX = -1, beforeY = -1;
 
     CustomGraphics2D(int width, int height) {
-        this.customImage = new CustomImage(width, height, BufferedImage.TYPE_INT_RGB);
-        this.graphics = customImage.createGraphics();
+        this.bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        this.imageWidth = width;
+        this.imageHeight = height;
+        this.graphics = bufferedImage.createGraphics();
         this.graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         this.graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        this.graphics.setColor(Color.WHITE);
-        this.graphics.fillRect(0, 0, width, height);
-        this.graphics.setColor(Color.BLACK);
+        this.newGraphics(Color.WHITE);
+    }
+
+    private void updateBuffer() {
+        graphics.drawImage(bufferedImage, 0, 0, null);
+    }
+
+    public void updateBuffer(Graphics graphics, ImageObserver observer) {
+        graphics.drawImage(bufferedImage, 0, 0, observer);
     }
 
     public synchronized void drawShape(ArrayList<Integer> x, ArrayList<Integer> y) {
@@ -44,11 +58,34 @@ public class CustomGraphics2D {
         return this.graphics;
     }
 
-    public CustomImage getCustomImage() {
-        return customImage;
+    public BufferedImage getBufferedImage() {
+        return bufferedImage;
     }
 
     public void changeLineThickness(int level) {
         this.graphics.setStroke(new BasicStroke(level));
+    }
+
+    public boolean fileOutput(File file) {
+        try {
+            String extension = file.getName().substring(file.getName().lastIndexOf("."));
+            if (extension.equals(".png") || extension.equals(".jpg")) {
+                return ImageIO.write(bufferedImage, extension.substring(1), file);
+            } else if (extension.isEmpty()) {
+                return ImageIO.write(bufferedImage, "png", new File(file.getPath() + ".png"));
+            } else {
+                return false;
+            }
+        } catch (IOException | NullPointerException e) {
+            return false;
+        }
+    }
+
+    public void newGraphics(Color background) {
+        Color beforeColor = graphics.getColor();
+        graphics.setColor(background);
+        graphics.fillRect(0, 0, imageWidth, imageHeight);
+        graphics.setColor(beforeColor);
+        updateBuffer();
     }
 }

@@ -1,6 +1,6 @@
 package file;
 
-import drawing.CustomImage;
+import drawing.CustomGraphics2D;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -13,13 +13,13 @@ public class FileOutputChooserMenuItem extends JMenuItem {
     private JFrame frame;
     private JFileChooser fileChooser;
     private FileNameExtensionFilter nameFilter;
-    private CustomImage customImage;
+    private CustomGraphics2D customGraphics;
 
-    public FileOutputChooserMenuItem(String name, JFrame frame, CustomImage image, String... extensions) {
+    public FileOutputChooserMenuItem(String name, JFrame frame, CustomGraphics2D customGraphics, String... extensions) {
         super(name);
         this.fileChooser = new JFileChooser();
         this.frame = frame;
-        this.customImage = image;
+        this.customGraphics = customGraphics;
         StringJoiner joiner = new StringJoiner(",", "","");
         Arrays.stream(extensions).forEach(joiner::add);
         this.nameFilter = new FileNameExtensionFilter(joiner + " Images", extensions);
@@ -31,7 +31,7 @@ public class FileOutputChooserMenuItem extends JMenuItem {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             fileChooser.showSaveDialog(frame);
-            customImage.fileOutput(fileChooser.getSelectedFile());
+            customGraphics.fileOutput(fileChooser.getSelectedFile());
         }
     }
 }
