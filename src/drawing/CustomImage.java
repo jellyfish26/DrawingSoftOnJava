@@ -14,7 +14,6 @@ public class CustomImage extends BufferedImage {
     public boolean fileOutput(File file) {
         try {
             String extension = file.getName().substring(file.getName().lastIndexOf("."));
-            System.out.println(extension);
             if (extension.equals(".png") || extension.equals(".jpg")) {
                 return ImageIO.write(this, extension.substring(1), file);
             } else if (extension.isEmpty()) {

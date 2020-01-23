@@ -20,9 +20,9 @@ public class FileOutputChooserMenuItem extends JMenuItem {
         this.fileChooser = new JFileChooser();
         this.frame = frame;
         this.customImage = image;
-        StringJoiner joiner = new StringJoiner("", ",","");
+        StringJoiner joiner = new StringJoiner(",", "","");
         Arrays.stream(extensions).forEach(joiner::add);
-        this.nameFilter = new FileNameExtensionFilter(joiner + "Images", extensions);
+        this.nameFilter = new FileNameExtensionFilter(joiner + " Images", extensions);
         fileChooser.setFileFilter(nameFilter);
         this.addActionListener(new KeyClick());
     }
@@ -30,7 +30,6 @@ public class FileOutputChooserMenuItem extends JMenuItem {
     private class KeyClick implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            System.out.println("aaa");
             fileChooser.showSaveDialog(frame);
             customImage.fileOutput(fileChooser.getSelectedFile());
         }
