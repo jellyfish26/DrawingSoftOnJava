@@ -3,6 +3,7 @@ package drawing;
 import color.CustomColorMenuItem;
 import color.SetColorMenuItem;
 import file.FileOutputChooserMenuItem;
+import file.NewGraphicsMenuItem;
 import line.SetThicknessMenuItem;
 import listener.MousePaintListener;
 import listener.SetMousePaintListener;
@@ -74,6 +75,7 @@ public class DrawingJFrame extends JFrame {
 
 	private JMenu setFileMenu() {
 		JMenu fileRelate = new JMenu("File");
+		fileRelate.add(new NewGraphicsMenuItem("New File", drawPanel.getCustomGraphics(), Color.WHITE));
 		fileRelate.add(new FileOutputChooserMenuItem("Save", this,
 				drawPanel.getCustomGraphics(), "png", "jpg"));
 		return fileRelate;
