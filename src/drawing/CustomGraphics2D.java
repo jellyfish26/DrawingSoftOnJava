@@ -66,7 +66,7 @@ public class CustomGraphics2D {
         this.graphics.setStroke(new BasicStroke(level));
     }
 
-    public boolean fileOutput(File file) {
+    public boolean saveImage(File file) {
         try {
             String extension = file.getName().substring(file.getName().lastIndexOf("."));
             if (extension.equals(".png") || extension.equals(".jpg")) {
@@ -77,6 +77,19 @@ public class CustomGraphics2D {
                 return false;
             }
         } catch (IOException | NullPointerException e) {
+            return false;
+        }
+    }
+
+    public boolean roadImage(File file) {
+        try {
+            if (file == null) return false;
+            BufferedImage originalImage = ImageIO.read(file);
+            newGraphics(Color.WHITE);
+            bufferedImage.createGraphics().drawImage(originalImage.getScaledInstance(imageWidth, imageHeight, Image.SCALE_AREA_AVERAGING),
+                    0, 0, imageWidth, imageHeight, null);
+            return true;
+        } catch (IOException e) {
             return false;
         }
     }

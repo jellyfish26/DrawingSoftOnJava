@@ -9,15 +9,17 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-public class FileOutputChooserMenuItem extends JMenuItem {
+public class FileChooserMenuItem extends JMenuItem {
     private JFrame frame;
     private JFileChooser fileChooser;
     private FileNameExtensionFilter nameFilter;
     private CustomGraphics2D customGraphics;
+    private int openDialogFlag;
 
-    public FileOutputChooserMenuItem(String name, JFrame frame, CustomGraphics2D customGraphics, String... extensions) {
+    public FileChooserMenuItem(String name, int openDialogFlag, JFrame frame, CustomGraphics2D customGraphics, String... extensions) {
         super(name);
         this.fileChooser = new JFileChooser();
+        this.openDialogFlag = openDialogFlag;
         this.frame = frame;
         this.customGraphics = customGraphics;
         StringJoiner joiner = new StringJoiner(",", "","");
@@ -30,8 +32,14 @@ public class FileOutputChooserMenuItem extends JMenuItem {
     private class KeyClick implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            fileChooser.showSaveDialog(frame);
-            customGraphics.fileOutput(fileChooser.getSelectedFile());
+            if (openDialogFlag ==  0) {
+                fileChooser.showOpenDialog(frame);
+                customGraphics.roadImage(fileChooser.getSelectedFile());
+            } else {
+                fileChooser.showSaveDialog(frame);
+                customGraphics.saveImage(fileChooser.getSelectedFile());
+            }
+
         }
     }
 }
