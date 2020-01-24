@@ -25,10 +25,16 @@ public class PenBehaviorComboBox extends JComboBox<PenBehavior> implements SetMo
     }
 
     private class objectSelect implements ItemListener {
+        private Object beforeObject;
+
         @Override
         public void itemStateChanged(ItemEvent itemEvent) {
-            if (itemEvent.getStateChange() != ItemEvent.SELECTED) return;
-            ((PenBehavior) Objects.requireNonNull(getSelectedItem())).setPenBehavior();
+            if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+                ((PenBehavior) Objects.requireNonNull(getSelectedItem())).setPenBehavior();
+                beforeObject = getSelectedItem();
+            } else if (itemEvent.getStateChange() == ItemEvent.DESELECTED && beforeObject != null) {
+                ((PenBehavior) Objects.requireNonNull(beforeObject)).removePenBehavior();
+            }
         }
     }
 }

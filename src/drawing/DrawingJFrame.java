@@ -106,7 +106,7 @@ public class DrawingJFrame extends JFrame {
 	}
 
 	private PenBehaviorComboBox setPenBehaviorComboBox() {
-		PenBehavior[] penBehaviors = {new SetNormalPen("pen"),
+		PenBehavior[] penBehaviors = {new SetNormalPen("pen", null), new SetErasePen("erase pen"),
 				new SetShape("line", 2), new SetShape("triangle", 3)};
 		PenBehaviorComboBox penRelate = new PenBehaviorComboBox(penBehaviors);
 		return penRelate;
