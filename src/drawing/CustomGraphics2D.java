@@ -68,11 +68,13 @@ public class CustomGraphics2D {
 
     public boolean saveImage(File file) {
         try {
-            String extension = file.getName().substring(file.getName().lastIndexOf("."));
+            int index = file.getName().lastIndexOf(".");
+            if (index == -1) {
+                return ImageIO.write(bufferedImage, "png", new File(file.getPath() + ".png"));
+            }
+            String extension = file.getName().substring(index);
             if (extension.equals(".png") || extension.equals(".jpg")) {
                 return ImageIO.write(bufferedImage, extension.substring(1), file);
-            } else if (extension.isEmpty()) {
-                return ImageIO.write(bufferedImage, "png", new File(file.getPath() + ".png"));
             } else {
                 return false;
             }

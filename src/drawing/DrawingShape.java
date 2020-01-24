@@ -14,6 +14,13 @@ public class DrawingShape {
         this.y = new ArrayList<>(vertex);
     }
 
+    public DrawingShape(int vertex) {
+        this.vertex = vertex;
+        this.shapeName = Integer.toString(vertex);
+        this.x = new ArrayList<>(vertex);
+        this.y = new ArrayList<>(vertex);
+    }
+
     public boolean drawShapeToCustomGraphics(CustomGraphics2D graphics2D) {
         if (this.x.size() != vertex) return false;
         graphics2D.drawShape(this.x, this.y);

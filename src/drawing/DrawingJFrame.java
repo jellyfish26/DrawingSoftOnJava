@@ -4,7 +4,7 @@ import color.CustomColorMenuItem;
 import color.SetColorMenuItem;
 import file.FileChooserMenuItem;
 import file.NewGraphicsMenuItem;
-import line.SetThicknessMenuItem;
+import line.*;
 import listener.MousePaintListener;
 import listener.SetMousePaintListener;
 
@@ -15,6 +15,7 @@ public class DrawingJFrame extends JFrame {
 	private final int FRAME_WIDTH = 500, FRAME_HEIGHT = 500;
 	private MousePaintListener paintListener;
 	private JMenuBar menuBar;
+	private PenBehaviorComboBox penRelateComboBox;
 	private DrawingJPanel drawPanel;
 
 	public DrawingJFrame() {
@@ -46,12 +47,14 @@ public class DrawingJFrame extends JFrame {
 	@Override
 	public void setVisible(boolean b) {
 		super.setVisible(b);
+		if (!b) return;
 		paintListener = new MousePaintListener(drawPanel);
 		drawPanel.addMousePaintListener(paintListener);
 		for (int menuBarIndex = 0; menuBarIndex < menuBar.getMenuCount(); menuBarIndex++) {
 			setMousePaintListenerToMenu(menuBar.getMenu(menuBarIndex));
 		}
 		drawPanel.addMouseMotionListener(paintListener);
+		penRelateComboBox.setMousePaintListener(paintListener);
 	}
 
 	private void setMousePaintListenerToMenu(JMenuItem menu) {
@@ -70,6 +73,8 @@ public class DrawingJFrame extends JFrame {
 		menuBar.add(setFileMenu());
 		menuBar.add(setColorMenu());
 		menuBar.add(setLineMenu());
+		penRelateComboBox = setPenBehaviorComboBox();
+		menuBar.add(penRelateComboBox);
 		setJMenuBar(menuBar);
 	}
 
@@ -98,5 +103,12 @@ public class DrawingJFrame extends JFrame {
 		lineRelate.add(new SetThicknessMenuItem("normal", 3));
 		lineRelate.add(new SetThicknessMenuItem("thick", 5));
 		return lineRelate;
+	}
+
+	private PenBehaviorComboBox setPenBehaviorComboBox() {
+		PenBehavior[] penBehaviors = {new SetNormalPen("pen"),
+				new SetShape("line", 2), new SetShape("triangle", 3)};
+		PenBehaviorComboBox penRelate = new PenBehaviorComboBox(penBehaviors);
+		return penRelate;
 	}
 }

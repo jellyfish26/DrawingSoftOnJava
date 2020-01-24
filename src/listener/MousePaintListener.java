@@ -28,12 +28,17 @@ public class MousePaintListener implements MouseMotionListener, MouseListener {
 		this.drawShape = shape;
 	}
 
+	public void setNormalLine() {
+		this.drawShape = null;
+	}
+
 	public CustomGraphics2D getCustomGraphics2D() {
 		return this.frameGraphics;
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		if (drawShape != null) return;
 		this.frameGraphics.drawSmoothLine(e.getX(), e.getY());
 	}
 
