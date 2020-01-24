@@ -45,16 +45,11 @@ public class CustomGraphics2D {
         }
     }
 
-    public synchronized void drawSmoothLine(int x, int y) {
-        if (beforeX != -1) this.graphics.drawLine(this.beforeX, this.beforeY, x, y);
-        this.beforeX = x; this.beforeY = y;
-    }
-
-    public void resetSmoothLineCoordinate() {
-        this.beforeX = -1; this.beforeY = -1;
-    }
-
     public Graphics getGraphics() {
+        return this.graphics;
+    }
+
+    public Graphics2D getGraphics2D() {
         return this.graphics;
     }
 
@@ -69,9 +64,7 @@ public class CustomGraphics2D {
     public boolean saveImage(File file) {
         try {
             int index = file.getName().lastIndexOf(".");
-            if (index == -1) {
-                return ImageIO.write(bufferedImage, "png", new File(file.getPath() + ".png"));
-            }
+            if (index == -1) return ImageIO.write(bufferedImage, "png", new File(file.getPath() + ".png"));
             String extension = file.getName().substring(index);
             if (extension.equals(".png") || extension.equals(".jpg")) {
                 return ImageIO.write(bufferedImage, extension.substring(1), file);
@@ -83,7 +76,7 @@ public class CustomGraphics2D {
         }
     }
 
-    public boolean roadImage(File file) {
+    public boolean loadImage(File file) {
         try {
             if (file == null) return false;
             BufferedImage originalImage = ImageIO.read(file);

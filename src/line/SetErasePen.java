@@ -7,7 +7,7 @@ import java.awt.desktop.SystemSleepEvent;
 import java.awt.event.MouseEvent;
 
 public class SetErasePen extends SetNormalPen {
-    Color beforeColor;
+    private Color beforeColor;
 
     public SetErasePen(MousePaintListener listener, String name) {
         super(listener, name, Color.WHITE);

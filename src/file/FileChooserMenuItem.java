@@ -34,7 +34,7 @@ public class FileChooserMenuItem extends JMenuItem {
         public void actionPerformed(ActionEvent actionEvent) {
             if (openDialogFlag ==  0) {
                 fileChooser.showOpenDialog(frame);
-                customGraphics.roadImage(fileChooser.getSelectedFile());
+                customGraphics.loadImage(fileChooser.getSelectedFile());
             } else {
                 fileChooser.showSaveDialog(frame);
                 customGraphics.saveImage(fileChooser.getSelectedFile());

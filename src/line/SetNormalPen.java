@@ -9,7 +9,8 @@ import java.awt.event.MouseEvent;
 public class SetNormalPen implements PenBehavior, SetMousePaintListener {
     private String name;
     private MousePaintListener paintListener;
-    private Color setDefaultColor;
+    private Color setDefaultColor; // nullable
+    private int beforeX = -1, beforeY = -1;
 
     public SetNormalPen(MousePaintListener listener, String name, Color color) {
         this.name = name;
@@ -59,7 +60,8 @@ public class SetNormalPen implements PenBehavior, SetMousePaintListener {
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
-        paintListener.getCustomGraphics2D().resetSmoothLineCoordinate();
+        beforeX = -1;
+        beforeY = -1;
     }
 
     @Override
@@ -74,11 +76,21 @@ public class SetNormalPen implements PenBehavior, SetMousePaintListener {
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
-        paintListener.getCustomGraphics2D().drawSmoothLine(mouseEvent.getX(), mouseEvent.getY());
+        if (beforeX != -1) paintListener.getGraphics().drawLine(beforeX, beforeY, mouseEvent.getX(), mouseEvent.getY());
+        beforeX = mouseEvent.getX();
+        beforeY = mouseEvent.getY();
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
+    }
+
+    int getBeforeX() {
+        return beforeX;
+    }
+
+    int getBeforeY() {
+        return beforeY;
     }
 }
