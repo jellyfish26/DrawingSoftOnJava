@@ -9,10 +9,12 @@ import listener.MousePaintListener;
 import listener.SetMousePaintListener;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class DrawingJFrame extends JFrame {
-	private final int FRAME_WIDTH = 500, FRAME_HEIGHT = 500;
+	private final int FRAME_WIDTH = 700, FRAME_HEIGHT = 600;
+	private final int PANEL_WIDTH = 500, PANEL_HEIGHT = 500;
 	private MousePaintListener paintListener;
 	private JMenuBar menuBar;
 	private PenBehaviorComboBox penRelateComboBox;
@@ -24,7 +26,10 @@ public class DrawingJFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		setResizable(false);
-		drawPanel = new DrawingJPanel(FRAME_WIDTH, FRAME_HEIGHT);
+		getContentPane().setBackground(Color.ORANGE);
+		drawPanel = new DrawingJPanel(PANEL_WIDTH, PANEL_HEIGHT);
+		drawPanel.setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
+		drawPanel.setBorder(new LineBorder(Color.BLACK, 2, true));
 		add(drawPanel);
 		setMenuBar();
 	}
