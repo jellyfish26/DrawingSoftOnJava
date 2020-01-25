@@ -1,8 +1,6 @@
 package shape;
 
-import drawing.DrawingShape;
-import line.PenBehavior;
-import line.SetShape;
+import line.SetShapePen;
 import listener.MousePaintListener;
 import listener.SetMousePaintListener;
 
@@ -11,7 +9,7 @@ import javax.swing.*;
 public class ChangeShapeButton extends JButton implements SetMousePaintListener {
     private MousePaintListener paintListener;
     private String shapeName;
-    private SetShape changeShape;
+    private SetShapePen changeShape;
     private int verticesSize;
 
     public ChangeShapeButton(MousePaintListener paintListener, String name, int verticesSize) {
@@ -19,7 +17,7 @@ public class ChangeShapeButton extends JButton implements SetMousePaintListener 
         this.shapeName = name;
         this.paintListener = paintListener;
         this.verticesSize = verticesSize;
-        this.changeShape = new SetShape(paintListener, name, verticesSize);
+        this.changeShape = new SetShapePen(paintListener, name, verticesSize);
         this.addActionListener(e -> paintListener.setPenBehavior(changeShape));
     }
 
@@ -36,7 +34,7 @@ public class ChangeShapeButton extends JButton implements SetMousePaintListener 
     @Override
     public void setMousePaintListener(MousePaintListener listener) {
         paintListener = listener;
-        this.changeShape = new SetShape(paintListener, shapeName, verticesSize);
+        this.changeShape = new SetShapePen(paintListener, shapeName, verticesSize);
         this.addActionListener(e -> paintListener.setPenBehavior(changeShape));
     }
 }

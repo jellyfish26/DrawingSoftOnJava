@@ -51,15 +51,15 @@ public class SetColorfulPen extends SetNormalPen {
 
     @Override
     public void setPenBehavior() {
-        beforeColor = super.getPaintListener().getGraphics().getColor();
-        beforePaint = super.getPaintListener().getCustomGraphics2D().getGraphics2D().getPaint(); // wow
+        beforeColor = getMousePaintListener().getGraphics().getColor();
+        beforePaint = getMousePaintListener().getCustomGraphics2D().getGraphics2D().getPaint(); // wow
         super.setPenBehavior();
     }
 
     @Override
     public void removePenBehavior() {
-        super.getPaintListener().getGraphics().setColor(beforeColor);
-        super.getPaintListener().getCustomGraphics2D().getGraphics2D().setPaint(beforePaint); // wow
+        getMousePaintListener().getGraphics().setColor(beforeColor);
+        getMousePaintListener().getCustomGraphics2D().getGraphics2D().setPaint(beforePaint); // wow
         super.removePenBehavior();
     }
 
@@ -72,7 +72,7 @@ public class SetColorfulPen extends SetNormalPen {
                 movingColor.get((draggedCount + 1) % movingColor.size())
         );
         draggedCount++;
-        super.getPaintListener().getCustomGraphics2D().getGraphics2D().setPaint(graduation);
+        getMousePaintListener().getCustomGraphics2D().getGraphics2D().setPaint(graduation);
         super.mouseDragged(mouseEvent);
     }
 

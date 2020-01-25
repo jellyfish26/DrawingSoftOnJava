@@ -4,8 +4,6 @@ import listener.MousePaintListener;
 import listener.SetMousePaintListener;
 
 import javax.swing.*;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

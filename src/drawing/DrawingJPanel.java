@@ -1,11 +1,9 @@
 package drawing;
 
 import listener.MousePaintListener;
-import listener.SetMousePaintListener;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class DrawingJPanel extends JPanel {
     private CustomGraphics2D customGraphics;

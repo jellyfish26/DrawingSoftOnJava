@@ -119,8 +119,8 @@ public class DrawingJFrame extends JFrame {
 				new SetNormalPen("pen", null),
 				new SetErasePen("erase pen"),
 				new SetColorfulPen("colorful pen", 4, colors),
-				new SetShape("line", 2),
-				new SetShape("triangle", 3)
+				new SetShapePen("line", 2),
+				new SetShapePen("triangle", 3)
 		};
 		PenBehaviorComboBox penRelate = new PenBehaviorComboBox(penBehaviors);
 		return penRelate;

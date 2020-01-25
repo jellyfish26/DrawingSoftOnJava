@@ -1,9 +1,7 @@
 package listener;
 
 import drawing.CustomGraphics2D;
-import drawing.DrawingJFrame;
 import drawing.DrawingJPanel;
-import drawing.DrawingShape;
 import line.PenBehavior;
 import line.SetNormalPen;
 
