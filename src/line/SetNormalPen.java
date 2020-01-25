@@ -26,11 +26,6 @@ public class SetNormalPen extends BasePenBehavior {
     }
 
     @Override
-    public String toString() {
-        return getPenName();
-    }
-
-    @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         beforeX = -1;
         beforeY = -1;

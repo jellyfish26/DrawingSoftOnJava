@@ -5,6 +5,7 @@ import listener.SetMousePaintListener;
 
 import java.awt.event.MouseEvent;
 
+// Although the abstract is used, there is no abstract method in this class. For convenience.
 public abstract class BasePenBehavior implements PenBehavior, SetMousePaintListener {
     private String penName;
     private MousePaintListener paintListener;
@@ -23,6 +24,11 @@ public abstract class BasePenBehavior implements PenBehavior, SetMousePaintListe
     }
 
     public String getPenName() {
+        return penName;
+    }
+
+    @Override
+    public String toString() {
         return penName;
     }
 

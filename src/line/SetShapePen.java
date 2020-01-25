@@ -22,11 +22,6 @@ public class SetShapePen extends BasePenBehavior {
     }
 
     @Override
-    public String toString() {
-        return getPenName();
-    }
-
-    @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         drawShape.setVertex(mouseEvent.getX(), mouseEvent.getY());
         drawShape.drawShapeToCustomGraphics(getMousePaintListener().getCustomGraphics2D());
