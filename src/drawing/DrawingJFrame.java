@@ -7,6 +7,7 @@ import file.NewGraphicsMenuItem;
 import line.*;
 import listener.MousePaintListener;
 import listener.SetMousePaintListener;
+import shape.StarShape;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -31,6 +32,7 @@ public class DrawingJFrame extends JFrame {
 		drawPanel.setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 		drawPanel.setBorder(new LineBorder(Color.BLACK, 2, true));
 		add(drawPanel);
+		addButton();
 		setMenuBar();
 	}
 	
@@ -43,7 +45,7 @@ public class DrawingJFrame extends JFrame {
 		return this.paintListener;
 	}
 
-	public Component[] add(Component[] comp) {
+	public Component[] add(Component... comp) {
 		Component[] values = new Component[comp.length];
 		for (int i = 0; i < comp.length; i++) values[i] = super.add(comp[i]);
 		return values;
@@ -54,6 +56,11 @@ public class DrawingJFrame extends JFrame {
 		super.setVisible(b);
 		if (!b) return;
 		paintListener = new MousePaintListener(drawPanel);
+		for (Component component : getContentPane().getComponents()) {
+			if (component instanceof SetMousePaintListener) {
+				((SetMousePaintListener) component).setMousePaintListener(paintListener);
+			}
+		}
 		drawPanel.addMousePaintListener(paintListener);
 		for (int menuBarIndex = 0; menuBarIndex < menuBar.getMenuCount(); menuBarIndex++) {
 			setMousePaintListenerToMenu(menuBar.getMenu(menuBarIndex));
@@ -71,6 +78,12 @@ public class DrawingJFrame extends JFrame {
 		} else if (menu instanceof SetMousePaintListener) {
 			((SetMousePaintListener) menu).setMousePaintListener(paintListener);
 		}
+	}
+
+	private void addButton() {
+		SetStampButton setStampButton = new SetStampButton("Star", new StarShape());
+		setStampButton.setLocationAndSize(500, 0);
+		add(setStampButton);
 	}
 
 	private void setMenuBar() {

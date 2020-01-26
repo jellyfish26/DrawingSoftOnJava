@@ -1,11 +1,12 @@
 package color;
 
 import listener.MousePaintListener;
+import listener.SetMousePaintListener;
 
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class SetColorButton extends JButton {
+public class SetColorButton extends JButton implements SetMousePaintListener {
 	private MousePaintListener paintListener;
 	private Color changeColor;
 	
@@ -21,6 +22,7 @@ public class SetColorButton extends JButton {
 		this.changeColor = color;
 	}
 
+	@Override
 	public void setMousePaintListener(MousePaintListener listener) {
 		paintListener = listener;
 		addActionListener(e -> paintListener.getGraphics().setColor(changeColor));
