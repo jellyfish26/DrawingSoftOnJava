@@ -33,6 +33,10 @@ public class MousePaintListener implements MouseMotionListener, MouseListener {
 		this.penBehavior = penBehavior;
 	}
 
+	public PenBehavior getPenBehavior() {
+		return penBehavior;
+	}
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		penBehavior.mouseDragged(e);

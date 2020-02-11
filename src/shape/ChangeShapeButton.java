@@ -11,6 +11,7 @@ public class ChangeShapeButton extends JButton implements SetMousePaintListener 
     private String shapeName;
     private SetShapePen changeShape;
     private int verticesSize;
+    static final int SIZE_WIDTH = 80, SIZE_HEIGHT = 28;
 
     public ChangeShapeButton(MousePaintListener paintListener, String name, int verticesSize) {
         super(name);
@@ -28,7 +29,7 @@ public class ChangeShapeButton extends JButton implements SetMousePaintListener 
 
     public void setLocationAndSize(int x, int y) {
         this.setLocation(x, y);
-        this.setSize(80, 28);
+        this.setSize(SIZE_WIDTH, SIZE_HEIGHT);
     }
 
     @Override

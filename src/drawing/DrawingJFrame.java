@@ -7,6 +7,7 @@ import file.NewGraphicsMenuItem;
 import line.*;
 import listener.MousePaintListener;
 import listener.SetMousePaintListener;
+import shape.SquareShape;
 import shape.StarShape;
 
 import javax.swing.*;
@@ -20,6 +21,7 @@ public class DrawingJFrame extends JFrame {
 	private JMenuBar menuBar;
 	private PenBehaviorComboBox penRelateComboBox;
 	private DrawingJPanel drawPanel;
+	private SetStampPen stampPen;
 
 	public DrawingJFrame() {
 		super("Drawing Software");
@@ -32,8 +34,8 @@ public class DrawingJFrame extends JFrame {
 		drawPanel.setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
 		drawPanel.setBorder(new LineBorder(Color.BLACK, 2, true));
 		add(drawPanel);
-		addButton();
 		setMenuBar();
+		addButton();
 	}
 	
 	public synchronized void addMousePaintListener(MousePaintListener mpl) {
@@ -81,9 +83,12 @@ public class DrawingJFrame extends JFrame {
 	}
 
 	private void addButton() {
-		SetStampButton setStampButton = new SetStampButton("Star", new StarShape());
-		setStampButton.setLocationAndSize(500, 0);
-		add(setStampButton);
+		SetStampButton setStarStampButton = new SetStampButton("Star", new StarShape(), stampPen);
+		SetStampButton setSquareStampButton = new SetStampButton("Square", new SquareShape(), stampPen);
+		setStarStampButton.setLocationAndSize(500, 0);
+		setSquareStampButton.setLocationAndSize(500 + SetStampButton.SIZE_WIDTH, 0);
+		add(setStarStampButton);
+		add(setSquareStampButton);
 	}
 
 	private void setMenuBar() {
@@ -139,8 +144,10 @@ public class DrawingJFrame extends JFrame {
 				new SetColorfulPen("colorful pen", 4, colors),
 				new SetShapePen("line", 2),
 				new SetShapePen("triangle", 3),
-				new SetInputCharPen("input character")
+				new SetInputCharPen("input character"),
+				new SetStampPen("draw Stamp")
 		};
+		stampPen = (SetStampPen) penBehaviors[6];
 		PenBehaviorComboBox penRelate = new PenBehaviorComboBox(penBehaviors);
 		return penRelate;
 	}

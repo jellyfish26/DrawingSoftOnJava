@@ -10,19 +10,19 @@ public class StarShape implements BaseShape {
         g.fillPolygon(starPolygon);
     }
 
-    public static Polygon makeStar(Point center, int diameter, int numCorners) {
+    public static Polygon makeStar(Point center, int radius, int numCorners) {
         Polygon star = new Polygon();
-        int radius = diameter / 2;
+        int half = radius / 2;
         double theta = Math.PI / (double) numCorners;
         double angle = Math.PI / 2.0;
         double vertexX, vertexY;
         for (int i = 0; i < numCorners; i++) {
-            vertexX = center.x + diameter * Math.cos(angle);
-            vertexY = center.y - diameter * Math.sin(angle);
-            star.addPoint((int) vertexX, (int) vertexY);
-            angle += theta;
             vertexX = center.x + radius * Math.cos(angle);
             vertexY = center.y - radius * Math.sin(angle);
+            star.addPoint((int) vertexX, (int) vertexY);
+            angle += theta;
+            vertexX = center.x + half * Math.cos(angle);
+            vertexY = center.y - half * Math.sin(angle);
             star.addPoint((int) vertexX, (int) vertexY);
             angle += theta;
         }
